@@ -1,5 +1,4 @@
-#include 'monty.h'
-#include <ctype.h>
+#include "monty.h"
 
 /**
  * isdigit_on_str - checks if any non-digit is in str
