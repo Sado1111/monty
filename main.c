@@ -1,5 +1,12 @@
 #include "monty.h"
 
+/**
+* main - entry point of the program
+* @ac: argument count
+* @av: variadic arguments
+* Return: 0 on Success. Otherwise 1
+*/
+
 int main(int ac, char *av[])
 {
 	stack_t *mystack = NULL;

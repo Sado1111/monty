@@ -1,15 +1,26 @@
 #include "monty.h"
 
+/**
+* executing - works on fd to perform stack ops on stack
+* @stack: address of the stack
+* @fd: the file descriptor of the opened file
+* Return: 0 on success. otherwise 1
+*/
+
 int executing(stack_t **stack, FILE *fd)
 {
 	char *line = NULL, *cmd;
-	size_t read, len = 0;
+	ssize_t read;
+	size_t len = 0;
 	unsigned int num_line = 0, cmd_found, i, ops_size;
 	instruction_t ops[] = {
-		{"push", push}, {"pall", pall},
+		{"push", push}, {"pall", pall}, {"pop", pop},
+		{"swap", swap}, {"add", add}, {"nop", nop},
+		{"sub", sub}, {"div", div}, {"mul", mul},
+		{"mod", mod},
 	};
 
-	while (read = getline(&line, &len, fd) != -1)
+	while ((read = getline(&line, &len, fd)) != -1)
 	{
 		num_line++;
 		cmd_found = 0;
@@ -33,14 +44,11 @@ int executing(stack_t **stack, FILE *fd)
 		if (!cmd_found)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", num_line, cmd);
-			free(line);
-			free(cmd);
-			fclose(fd);
+			free(line), free(cmd), fclose(fd);
 			return (1);
 		}
 		free(cmd);
 	}
-	free(line);
-	fclose(fd);
+	free(line), fclose(fd);
 	return (0);
 }

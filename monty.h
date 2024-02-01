@@ -1,6 +1,8 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#define _GNU_SOURCE
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -43,8 +45,6 @@ int executing(stack_t **stack, FILE *fd);
 int isdigit_on_str(char *str);
 stack_t *new_node(int value);
 void push(stack_t **head, unsigned int line_number);
-void push(stack_t **head, unsigned int line_number);
-void pall(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number);
 void pop(stack_t **head, unsigned int line_number);
 void swap(stack_t **head, unsigned int line_number);
