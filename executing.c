@@ -23,7 +23,6 @@ int executing(stack_t **stack, FILE *fd)
 
 		for (i = 0; i < ops_size; i++)
 		{
-			
 			if (strcmp(cmd, ops[i].opcode) == 0)
 			{
 				ops[i].f(stack, num_line);

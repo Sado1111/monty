@@ -4,7 +4,6 @@ int main(int ac, char *av[])
 {
 	stack_t *mystack = NULL;
 	FILE *file_des;
-		
 
 	if (ac != 2)
 	{
