@@ -88,8 +88,9 @@ void push(stack_t **head, unsigned int line_number)
 
 void pall(stack_t **head, unsigned int line_number)
 {
-	UNUSED(line_number);
 	stack_t *temp;
+
+	(UNUSED)line_number;
 
 	temp = *head;
 
@@ -108,7 +109,7 @@ void pall(stack_t **head, unsigned int line_number)
 
 void pint(stack_t **head, unsigned int line_number)
 {
-	UNUSED(line_number);
+	(UNUSED)line_number;
 
 	if (*head == NULL)
 	{
@@ -117,5 +118,4 @@ void pint(stack_t **head, unsigned int line_number)
 	}
 
 	printf("%d\n", (*head)->n);
-void pall(stack_t **head, unsigned int line_number)
 }
