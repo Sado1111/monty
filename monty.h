@@ -8,7 +8,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#define UNUSED(x) (void)(x)
+#define UNUSED(x) (void)x
 
 
 /**

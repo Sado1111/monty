@@ -117,7 +117,7 @@ void sub(stack_t **head, unsigned int line_number)
 	result = second_top->n - top->n;
 
 
-	second_top->n = c;
+	second_top->n = result;
 	*head = second_top;
 	second_top->prev = NULL;
 
