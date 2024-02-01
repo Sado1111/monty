@@ -40,8 +40,20 @@ typedef struct instruction_s
 } instruction_t;
 
 int executing(stack_t **stack, FILE *fd);
-void push(stack_t **stack, unsigned int);
-void pall(stack_t **stack, unsigned int);
+int isdigit_on_str(char *str);
+stack_t *new_node(int value);
+void push(stack_t **head, unsigned int line_number);
+void push(stack_t **head, unsigned int line_number);
+void pall(stack_t **head, unsigned int line_number);
+void pall(stack_t **head, unsigned int line_number);
+void pop(stack_t **head, unsigned int line_number);
+void swap(stack_t **head, unsigned int line_number);
+void add(stack_t **head, unsigned int line_number);
+void nop(stack_t **head, unsigned int line_number);
+void sub(stack_t **head, unsigned int line_number);
+void div(stack_t **head, unsigned int line_number);
+void mul(stack_t **head, unsigned int line_number);
+void mod(stack_t **head, unsigned int line_number);
 
 
 #endif /* MONTY_H */

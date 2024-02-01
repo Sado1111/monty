@@ -60,6 +60,7 @@ void push(stack_t **head, unsigned int line_number)
 	stack_t *new_top;
 
 	token = strtok(NULL, " \t\r\n");
+
 	if (token == NULL || !(isdigit_on_str(token)))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
@@ -117,4 +118,5 @@ void pint(stack_t **head, unsigned int line_number)
 	}
 
 	printf("%d\n", (*head)->n);
+void pall(stack_t **head, unsigned int line_number)
 }
