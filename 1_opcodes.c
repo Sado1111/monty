@@ -86,12 +86,11 @@ void push(stack_t **head, unsigned int line_number)
  * @line_number: the line number read.
  */
 
-void pall(stack_t **head, unsigned int line_number)
+void pall(stack_t **head, unsigned int __attribute__((unused)) line_number)
 {
 	stack_t *temp;
 
-	(UNUSED)line_number;
-
+	
 	temp = *head;
 
 	while (temp != NULL)
@@ -107,10 +106,8 @@ void pall(stack_t **head, unsigned int line_number)
  * @line_number: the line number read.
  */
 
-void pint(stack_t **head, unsigned int line_number)
+void pint(stack_t **head, unsigned int __attribute__((unused)) line_number)
 {
-	(UNUSED)line_number;
-
 	if (*head == NULL)
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
