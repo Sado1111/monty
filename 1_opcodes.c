@@ -90,7 +90,6 @@ void pall(stack_t **head, unsigned int __attribute__((unused)) line_number)
 {
 	stack_t *temp;
 
-	
 	temp = *head;
 
 	while (temp != NULL)
