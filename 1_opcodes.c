@@ -2,7 +2,7 @@
 
 /**
  * isdigit_on_str - checks if any non-digit is in str
- * @str: array of character to be checked
+ * @s: array of character to be checked
  * Return: 0 if str is NULL/contains non-digits
  */
 

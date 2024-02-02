@@ -40,7 +40,7 @@ typedef struct instruction_s
 } instruction_t;
 
 void executing(char *cmd, stack_t **head, int line_number);
-int isdigit_on_str(char *str);
+int isdigit_on_str(char *s);
 stack_t *new_node(int value);
 void push(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number);
@@ -53,6 +53,7 @@ void divd(stack_t **head, unsigned int line_number);
 void mul(stack_t **head, unsigned int line_number);
 void mod(stack_t **head, unsigned int line_number);
 void freedlist(stack_t *head);
+void pint(stack_t **head, unsigned int line_number);
 
 
 #endif /* MONTY_H */
