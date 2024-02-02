@@ -15,7 +15,7 @@ void execute_line(
 	char *token, *cmd;
 	size_t cmd_found = 0, ops_size, i;
 	instruction_t ops[] = {
-		{"push", push}, {"pall", pall}, {"pop", pop},
+		{"push", push}, {"pall", pall}, {"pop", pop}, {"pchar", pchar},
 		{"swap", swap}, {"add", add}, {"nop", nop}, {"pint", pint},
 		{"sub", sub}, {"div", divd}, {"mul", mul}, {"mod", mod},
 	};
