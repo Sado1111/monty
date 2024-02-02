@@ -9,8 +9,9 @@
 
 int main(int ac, char *av[])
 {
-	char *token;
+	char *token, *line = NULL;
 	unsigned int line_number = 1;
+	size_t len = 0;
 	stack_t *mystack = NULL;
 	FILE *file_des;
 
@@ -27,19 +28,19 @@ int main(int ac, char *av[])
 		exit(EXIT_FAILURE);
 	}
 
-	while ((read = getline(&line, &len, fd)) != -1)
+	while ((getline(&line, &len, file_des)) != -1)
 	{
-		token = strtok(buffer, " \n\t\r");
+		token = strtok(line, " \n\t\r");
 		if (token == NULL)
 		{
 			line_number++;
 			continue;
 		}
-		executing(token, &stack, line_number);
+		executing(token, &mystack, line_number);
 		line_number++;
 	}
 	free(line);
-	freedlist(stack);
-	fclose(file);
+	freedlist(mystack);
+	fclose(file_des);
 	return (0);
 }

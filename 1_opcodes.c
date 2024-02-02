@@ -64,7 +64,6 @@ void push(stack_t **head, unsigned int line_number)
 		temp->prev = new_node;
 	*head = new_node;
 }
-}
 
 /**
  * pall - prints all values on stack, starting from top

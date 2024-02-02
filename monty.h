@@ -39,7 +39,7 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-int executing(char *cmd, stack_t **stack, int line_number);
+void executing(char *cmd, stack_t **head, int line_number);
 int isdigit_on_str(char *str);
 stack_t *new_node(int value);
 void push(stack_t **head, unsigned int line_number);
@@ -52,6 +52,7 @@ void sub(stack_t **head, unsigned int line_number);
 void divd(stack_t **head, unsigned int line_number);
 void mul(stack_t **head, unsigned int line_number);
 void mod(stack_t **head, unsigned int line_number);
+void freedlist(stack_t *head);
 
 
 #endif /* MONTY_H */

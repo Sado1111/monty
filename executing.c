@@ -2,11 +2,13 @@
 
 /**
  * executing - works on fd to perform stack ops on stack
- * @cmd - command
- * @stack: address of the stack
+ * @cmd: command
+ * @head: address of the stack
  * @line_number: no of line read
  */
 
+
+void executing(char *cmd, stack_t **head, int line_number)
 {
 	int i = 0;
 	instruction_t ops[] = {
@@ -16,9 +18,10 @@
 	};
 	if (*cmd == '#')
 		return;
+
 	while (ops[i].opcode)
 	{
-		if (strcmp(opcodes[i].opcode, cmd) == 0)
+		if (strcmp(ops[i].opcode, cmd) == 0)
 		{
 			ops[i].f(head, line_number);
 			return;
