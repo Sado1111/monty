@@ -12,10 +12,20 @@ void executing(char *cmd, stack_t **head, int line_number)
 {
 	int i = 0;
 	instruction_t ops[] = {
-		{"push", push}, {"pall", pall}, {"pop", pop},
-		{"swap", swap}, {"add", add}, {"nop", nop},
-		{"sub", sub}, {"divd", divd}, {"mul", mul}, {"mod", mod},
+		{"push", push},
+		{"pall", pall},
+		{"pint", pint},
+		{"pop", pop},
+		{"swap", swap},
+		{"add", add},
+		{"nop", nop},
+		{"add", add},
+		{"sub", sub},
+		{"div", divd},
+		{"mul", mul},
+		{"mod", mod},
 	};
+
 	if (*cmd == '#')
 		return;
 

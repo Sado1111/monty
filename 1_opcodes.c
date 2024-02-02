@@ -6,21 +6,17 @@
  * Return: 0 if str is NULL/contains non-digits
  */
 
-int isdigit_on_str(char *str)
+int isdigit_on_str(char *s)
 {
-	int i = 0;
-
-	if (str[i] == '\0')
+	if (*s == '-')
+		s++;
+	if (*s == '\0')
 		return (0);
-
-	while (str[i])
+	while (*s)
 	{
-		if (str[i] == '-')
-			i++;
-
-		if (!isdigit((unsigned char)str[i]))
+		if (*s < '0' || *s > '9')
 			return (0);
-		i++;
+		s++;
 	}
 	return (1);
 }
