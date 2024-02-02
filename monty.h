@@ -66,6 +66,9 @@ void mul(stack_t **head, unsigned int line_number);
 void mod(stack_t **head, unsigned int line_number);
 void pchar(stack_t **head, unsigned int line_number);
 
+/************4_opcodes.c**************/
+void pstr(stack_t **head, unsigned int line_number);
+
 
 /******free.c**********/
 void free_stack(stack_t **astack);

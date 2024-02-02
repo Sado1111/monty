@@ -18,6 +18,7 @@ void execute_line(
 		{"push", push}, {"pall", pall}, {"pop", pop}, {"pchar", pchar},
 		{"swap", swap}, {"add", add}, {"nop", nop}, {"pint", pint},
 		{"sub", sub}, {"div", divd}, {"mul", mul}, {"mod", mod},
+		{"pstr", pstr}
 	};
 
 	token = strtok(*buffer, " \t\r\n");
