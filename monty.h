@@ -39,8 +39,12 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+
 /***********executing.c***************/
 int executing(stack_t **head, FILE *fd);
+void execute_line(
+	stack_t **mystack, FILE *fd, char **buffer, unsigned int line_numb);
+
 
 /*******1_opcodes.c**********/
 int isdigit_on_str(char *str);
