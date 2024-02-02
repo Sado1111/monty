@@ -2,25 +2,50 @@
 
 /**
  * isdigit_on_str - checks if any non-digit is in str
- * @s: array of character to be checked
+ * @str: array of character to be checked
  * Return: 0 if str is NULL/contains non-digits
  */
 
-int isdigit_on_str(char *s)
+int isdigit_on_str(char *str)
 {
-	if (*s == '-')
-		s++;
-	if (*s == '\0')
+	int i = 0;
+
+	if (str[i] == '\0')
 		return (0);
-	while (*s)
+
+	while (str[i])
 	{
-		if (*s < '0' || *s > '9')
+		if (str[i] == '-')
+			i++;
+
+		if (!isdigit((unsigned char)str[i]))
 			return (0);
-		s++;
+		i++;
 	}
 	return (1);
 }
 
+/**
+ * new_node - creates a new node
+ * @value: value to be passed to new node created
+ * Return: pointer to new node created
+ */
+
+stack_t *new_node(int value)
+{
+	stack_t *new = malloc(sizeof(stack_t));
+
+	if (new == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed");
+		exit(EXIT_FAILURE);
+	}
+	new->n = value;
+	new->prev = NULL;
+	new->next = NULL;
+
+	return (new);
+}
 /**
  * push - pushes an element to the stack.
  * @head: head pointer.
@@ -29,36 +54,37 @@ int isdigit_on_str(char *s)
 
 void push(stack_t **head, unsigned int line_number)
 {
-	int n;
 	char *token;
-	stack_t *temp = *head;
-	stack_t *new_node;
+	int value;
+	stack_t *new_top;
 
-	if (head == NULL)
-	{
-		fprintf(stderr, "Stack is not present\n");
-		exit(EXIT_FAILURE);
-	}
-	token = strtok(NULL, " \n\r\t");
-	if (token == NULL || isdigit_on_str(token) == 0)
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	n = atoi(token);
-	new_node = malloc(sizeof(stack_t));
-	if (new_node == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-	new_node->n = n;
-	new_node->prev = NULL;
-	new_node->next = *head;
 
+	token = strtok(NULL, " \t\r\n");
+
+	if (token == NULL || !(isdigit_on_str(token)))
+	{
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	value = strtol(token, NULL, 10);
+	if (value == 0 && token[0] != '0')
+	{
+		fprintf(stderr, "L%u: invalid integer format\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	new_top = new_node(value);
+	if (new_top == NULL)
+	{
+		fprintf(stderr, "L%u: memory allocation failed\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 	if (*head != NULL)
-		temp->prev = new_node;
-	*head = new_node;
+	{
+		new_top->next = *head;
+		(*head)->prev = new_top;
+	}
+	*head = new_top;
 }
 
 /**
@@ -67,16 +93,19 @@ void push(stack_t **head, unsigned int line_number)
  * @line_number: the line number read.
  */
 
-void pall(stack_t **head, unsigned int line_number)
+void pall(stack_t **head, unsigned int __attribute__((unused)) line_number)
 {
-	(void)line_number;
+	stack_t *temp;
 
-	while (*head != NULL)
+	temp = *head;
+
+	while (temp != NULL)
 	{
-		printf("%d\n", (*head)->n);
-		*head = (*head)->next;
+		printf("%d\n", temp->n);
+		temp = temp->next;
 	}
 }
+
 
 /**
  * pint - prints the value at the top of the stack
@@ -84,7 +113,7 @@ void pall(stack_t **head, unsigned int line_number)
  * @line_number: the line number read.
  */
 
-void pint(stack_t **head, unsigned int __attribute__((unused)) line_number)
+void pint(stack_t **head, unsigned int line_number)
 {
 	if (*head == NULL)
 	{
