@@ -74,13 +74,12 @@ void push(stack_t **head, unsigned int line_number)
 
 void pall(stack_t **head, unsigned int line_number)
 {
-	stack_t *temp = *head;
 	(void)line_number;
 
-	while (temp != NULL)
+	while (*head != NULL)
 	{
-		printf("%d\n", temp->n);
-		temp = temp->next;
+		printf("%d\n", (*head)->n);
+		*head = (*head)->next;
 	}
 }
 
