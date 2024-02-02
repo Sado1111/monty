@@ -1,52 +1,48 @@
 #include "monty.h"
 
 /**
-* executing - works on fd to perform stack ops on stack
-* @stack: address of the stack
-* @fd: the file descriptor of the opened file
-* Return: 0 on success. otherwise 1
-*/
+ * executing - works on fd to perform stack ops on stack
+ * @cmd - command
+ * @stack: address of the stack
+ * @line_number: no of line read
+ */
 
-int executing(stack_t **stack, FILE *fd)
 {
-	char *line = NULL, *cmd;
-	ssize_t read;
-	size_t len = 0;
-	unsigned int num_line = 0, cmd_found, i, ops_size;
+	int i = 0;
 	instruction_t ops[] = {
 		{"push", push}, {"pall", pall}, {"pop", pop},
 		{"swap", swap}, {"add", add}, {"nop", nop},
 		{"sub", sub}, {"divd", divd}, {"mul", mul}, {"mod", mod},
 	};
-
-	while ((read = getline(&line, &len, fd)) != -1)
+	if (*cmd == '#')
+		return;
+	while (ops[i].opcode)
 	{
-		num_line++;
-		cmd_found = 0;
-		cmd = strtok(line, " \t\r\n");
-		if (cmd != NULL)
-			cmd = strdup(cmd);
-		else
-			continue;
-		ops_size = sizeof(ops) / sizeof(ops[0]);
-
-		for (i = 0; i < ops_size; i++)
+		if (strcmp(opcodes[i].opcode, cmd) == 0)
 		{
-			if (strcmp(cmd, ops[i].opcode) == 0)
-			{
-				ops[i].f(stack, num_line);
-				cmd_found = 1;
-				break;
-			}
+			ops[i].f(head, line_number);
+			return;
 		}
-		if (!cmd_found)
-		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", num_line, cmd);
-			free(line), free(cmd), fclose(fd);
-			return (1);
-		}
-		free(cmd);
+		i++;
 	}
-	free(line), fclose(fd);
-	return (0);
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, cmd);
+	exit(EXIT_FAILURE);
+}
+
+
+/**
+ * freedlist - frees a list.
+ * @head: head pointer.
+ */
+void freedlist(stack_t *head)
+{
+	stack_t *current =  NULL, *next = NULL;
+
+	current = head;
+	while (current)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
 }

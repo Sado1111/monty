@@ -26,27 +26,6 @@ int isdigit_on_str(char *str)
 }
 
 /**
- * new_node - creates a new node
- * @value: value to be passed to new node created
- * Return: pointer to new node created
- */
-
-stack_t *new_node(int value)
-{
-	stack_t *new = malloc(sizeof(stack_t));
-
-	if (new == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed");
-		exit(EXIT_FAILURE);
-	}
-	new->n = value;
-	new->prev = NULL;
-	new->next = NULL;
-
-	return (new);
-}
-/**
  * push - pushes an element to the stack.
  * @head: head pointer.
  * @line_number: the line number read.
@@ -54,30 +33,37 @@ stack_t *new_node(int value)
 
 void push(stack_t **head, unsigned int line_number)
 {
+	int n;
 	char *token;
-	int value;
-	stack_t *new_top;
+	stack_t *temp = *head;
+	stack_t *new_node;
 
-	token = strtok(NULL, " \t\r\n");
-
-	if (token == NULL || !(isdigit_on_str(token)))
+	if (head == NULL)
 	{
-		fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		fprintf(stderr, "Stack is not present\n");
 		exit(EXIT_FAILURE);
 	}
-
-	value = atoi(token);
-	if (*head == NULL)
+	token = strtok(NULL, " \n\r\t");
+	if (token == NULL || isdigit_on_str(token) == 0)
 	{
-		*head = new_node(value);
-		return;
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
 	}
+	n = atoi(token);
+	new_node = malloc(sizeof(stack_t));
+	if (new_node == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	new_node->n = n;
+	new_node->prev = NULL;
+	new_node->next = *head;
 
-	new_top = new_node(value);
-	new_top->next = *head;
-	(*head)->prev = new_top;
-
-	*head = new_top;
+	if (*head != NULL)
+		temp->prev = new_node;
+	*head = new_node;
+}
 }
 
 /**
@@ -86,11 +72,10 @@ void push(stack_t **head, unsigned int line_number)
  * @line_number: the line number read.
  */
 
-void pall(stack_t **head, unsigned int __attribute__((unused)) line_number)
+void pall(stack_t **head, unsigned int line_number)
 {
-	stack_t *temp;
-
-	temp = *head;
+	stack_t *temp = *head;
+	(void)line_number;
 
 	while (temp != NULL)
 	{

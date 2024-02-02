@@ -8,7 +8,7 @@
 #include <string.h>
 #include <ctype.h>
 
-
+#define M 1024 /*max size*/
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -39,7 +39,7 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-int executing(stack_t **stack, FILE *fd);
+int executing(char *cmd, stack_t **stack, int line_number);
 int isdigit_on_str(char *str);
 stack_t *new_node(int value);
 void push(stack_t **head, unsigned int line_number);

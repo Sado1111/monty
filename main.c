@@ -9,12 +9,14 @@
 
 int main(int ac, char *av[])
 {
+	char *token;
+	unsigned int line_number = 1;
 	stack_t *mystack = NULL;
 	FILE *file_des;
 
 	if (ac != 2)
 	{
-		fprintf(stderr, "Useage: %s <filename>\n", av[0]);
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -25,5 +27,19 @@ int main(int ac, char *av[])
 		exit(EXIT_FAILURE);
 	}
 
-	exit(executing(&mystack, file_des));
+	while ((read = getline(&line, &len, fd)) != -1)
+	{
+		token = strtok(buffer, " \n\t\r");
+		if (token == NULL)
+		{
+			line_number++;
+			continue;
+		}
+		executing(token, &stack, line_number);
+		line_number++;
+	}
+	free(line);
+	freedlist(stack);
+	fclose(file);
+	return (0);
 }
