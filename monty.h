@@ -55,4 +55,7 @@ void mod(stack_t **head, unsigned int line_number);
 void pint(stack_t **head, unsigned int line_number);
 
 
+void free_stack(stack_t **astack);
+
+
 #endif /* MONTY_H */

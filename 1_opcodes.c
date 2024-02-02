@@ -64,19 +64,22 @@ void push(stack_t **head, unsigned int line_number)
 	if (token == NULL || !(isdigit_on_str(token)))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		free_stack(head);
 		exit(EXIT_FAILURE);
 	}
 
 	value = strtol(token, NULL, 10);
-	if (value == 0 && token[0] != '0')
+	if (value == 0 && token[0] != '0' && token[1] != '0')
 	{
 		fprintf(stderr, "L%u: invalid integer format\n", line_number);
+		free_stack(head);
 		exit(EXIT_FAILURE);
 	}
 	new_top = new_node(value);
 	if (new_top == NULL)
 	{
 		fprintf(stderr, "L%u: memory allocation failed\n", line_number);
+		free_stack(head);
 		exit(EXIT_FAILURE);
 	}
 	if (*head != NULL)

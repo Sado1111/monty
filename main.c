@@ -11,6 +11,7 @@ int main(int ac, char *av[])
 {
 	stack_t *mystack = NULL;
 	FILE *file_des;
+	int exit_val;
 
 	if (ac != 2)
 	{
@@ -25,5 +26,7 @@ int main(int ac, char *av[])
 		exit(EXIT_FAILURE);
 	}
 
-	exit(executing(&mystack, file_des));
+	exit_val = (executing(&mystack, file_des));
+	free_stack(&mystack);
+	exit(exit_val);
 }
