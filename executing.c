@@ -15,7 +15,7 @@ int executing(stack_t **stack, FILE *fd)
 	instruction_t ops[] = {
 		{"push", push}, {"pall", pall}, {"pop", pop},
 		{"swap", swap}, {"add", add}, {"nop", nop}, {"pint", pint},
-		{"sub", sub}, {"divd", divd}, {"mul", mul}, {"mod", mod},
+		{"sub", sub}, {"div", divd}, {"mul", mul}, {"mod", mod},
 	};
 
 	while ((read = getline(&line, &len, fd)) != -1)

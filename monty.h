@@ -39,22 +39,30 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/***********executing.c***************/
 int executing(stack_t **head, FILE *fd);
+
+/*******1_opcodes.c**********/
 int isdigit_on_str(char *str);
 stack_t *new_node(int value);
 void push(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number);
+void pint(stack_t **head, unsigned int line_number);
+
+/********2_opcodes.c***********/
 void pop(stack_t **head, unsigned int line_number);
 void swap(stack_t **head, unsigned int line_number);
 void add(stack_t **head, unsigned int line_number);
 void nop(stack_t **head, unsigned int line_number);
 void sub(stack_t **head, unsigned int line_number);
+
+/*************3_opcodes.c**************/
 void divd(stack_t **head, unsigned int line_number);
 void mul(stack_t **head, unsigned int line_number);
 void mod(stack_t **head, unsigned int line_number);
-void pint(stack_t **head, unsigned int line_number);
 
 
+/******free.c**********/
 void free_stack(stack_t **astack);
 
 
