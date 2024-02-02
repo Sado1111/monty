@@ -94,7 +94,7 @@ void mod(stack_t **head, unsigned int line_number)
 	top = *head;
 	second_top = top->next;
 
-	result = second_top->n / top->n;
+	result = second_top->n % top->n;
 
 
 	second_top->n = result;

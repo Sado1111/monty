@@ -29,6 +29,8 @@ int executing(stack_t **stack, FILE *fd)
 				fprintf(stderr, "Memory allocation failed\n");
 				free(line), fclose(fd), exit(EXIT_FAILURE);
 			}
+			if (cmd[0] == '#')
+				continue;
 			cmd_found = 0, ops_size = sizeof(ops) / sizeof(ops[0]);
 			for (i = 0; i < ops_size; i++)
 			{
