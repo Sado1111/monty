@@ -46,7 +46,7 @@ void execute_line(
 		if (!cmd_found)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_numb, cmd);
-			free(buffer), free(cmd), fclose(fd);
+			free(*buffer), free(cmd), fclose(fd);
 			exit(1);
 		}
 		free(cmd);
