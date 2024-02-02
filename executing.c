@@ -14,7 +14,7 @@ int executing(stack_t **stack, FILE *fd)
 	size_t len = 0, ops_size, cmd_found, i;
 	instruction_t ops[] = {
 		{"push", push}, {"pall", pall}, {"pop", pop},
-		{"swap", swap}, {"add", add}, {"nop", nop},
+		{"swap", swap}, {"add", add}, {"nop", nop}, {"pint", pint},
 		{"sub", sub}, {"divd", divd}, {"mul", mul}, {"mod", mod},
 	};
 
