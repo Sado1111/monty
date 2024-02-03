@@ -25,3 +25,30 @@ void pstr(stack_t **head, unsigned int line_number)
 	}
 	printf("\n");
 }
+
+/**
+ * rotl - rotates the top to the last one and second top becomes first
+ * @head: head pointer.
+ * @line_number: the line number read.
+ * Return: always void
+ */
+
+void rotl(stack_t **head, unsigned int line_number)
+{
+	stack_t *tmp, *top_element;
+
+	(void)line_number;
+	if (*head == NULL || (*head)->next == NULL)
+		return;
+	tmp = top_element = *head;
+	while (tmp->next != NULL)
+	{
+		tmp = tmp->next;
+	}
+
+	(top_element->next)->prev = NULL;
+	*head = (top_element)->next;
+	tmp->next = top_element;
+	top_element->prev = tmp;
+	top_element->next = NULL;
+}

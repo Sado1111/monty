@@ -68,6 +68,7 @@ void pchar(stack_t **head, unsigned int line_number);
 
 /************4_opcodes.c**************/
 void pstr(stack_t **head, unsigned int line_number);
+void rotl(stack_t **head, unsigned int line_number);
 
 
 /******free.c**********/
